@@ -1,0 +1,32 @@
+import React, { useState } from "react";
+
+function App({ stars = 5 }) {
+  const [rating, setrating] = useState(0);
+  const [hover, sethover] = useState(0);
+  return (
+    <div>
+      <h1>star rating</h1>
+      {[...Array(stars)].map((_, index) => {
+        return (
+          <span key={index}>
+            <span
+              onClick={() => setrating(index + 1)}
+              onMouseEnter={() => setrating(index + 1)}
+              onMouseLeave={() => sethover(0)}
+              style={{
+                color: index < (hover || rating) ? "gold" : "grey",
+                cursor: "pointer",
+                fontSize: "32px",
+              }}
+            >
+              &#9733;
+            </span>
+          </span>
+        );
+      })}
+      {/* <span>&#9733;</span> */}
+      <p>Rating {rating}</p>
+    </div>
+  );
+}
+export default App;
