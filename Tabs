@@ -1,0 +1,59 @@
+import React, { useState } from "react";
+function App() {
+  
+  const tabs = [
+    {
+      id: 1,
+      label: "Home",
+      content: "Welcome to the Home tab. Here you can see the latest updates.",
+    },
+    {
+      id: 2,
+      label: "Profile",
+      content:
+        "This is your Profile. You can view and update your personal details.",
+    },
+    {
+      id: 3,
+      label: "Settings",
+      content: "Manage your Settings here and update your preferences.",
+    },
+    {
+      id: 4,
+      label: "About",
+      content: "Learn more About us and explore our application features.",
+    },
+  ];
+  const [active, setactive] = useState();
+  const Active_tab = tabs.find((x) => x.id == active);
+  console.log(Active_tab);
+  return (
+    <div>
+      <h1>TABS</h1>
+      <ul
+        style={{
+          display: "flex",
+          gap: "50px",
+          listStyle: "none",
+          cursor: "pointer",
+          // border-bottom: "2px solid #e5e7eb";
+        }}
+      >
+        {tabs.map((x) => (
+          <li
+            style={{
+              color: active === x.id ? "gold" : "black",
+              borderBottom: active === x.id ? "2px solid gold" : "none",
+            }}
+            key={x.id}
+            onClick={() => setactive(x.id)}
+          >
+            <h1>{x.label}</h1>
+          </li>
+        ))}
+      </ul>
+      <h3>{Active_tab?.content}</h3>
+    </div>
+  );
+}
+export default App;
