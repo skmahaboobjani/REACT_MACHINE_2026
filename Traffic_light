@@ -1,0 +1,63 @@
+import React, { useEffect, useState } from "react"
+ function Trafficl_iight()
+ {
+   const [traffic,settraffic]=useState("green")
+
+     useEffect(()=>
+     {
+       let timer;
+
+       if(traffic==="green")
+       {
+           setTimeout(()=>
+           {
+             settraffic("yellow")
+           },3000)
+       }
+       else if(traffic==="yellow")
+       {
+         setTimeout(()=>
+           {
+             settraffic("red")
+           },500)
+       
+       }
+       else if(traffic==="red")
+       {
+          setTimeout(()=>
+         {
+           settraffic("green")
+         },1000)
+       }
+     },[traffic])
+
+  
+  
+   return(
+      <div
+      style={{
+         width: "100px",
+        padding: "20px",
+        background: "black",
+        borderRadius: "10px",
+      }}>
+       
+
+       <div 
+       style={{backgroundColor:traffic==="red"?"red":"grey",width:"50px",height:"50px",borderRadius:"50%",margin:"10px"}}
+       >
+
+       </div>
+       <div
+        style={{backgroundColor:traffic==="yellow"?"yellow":"grey",width:"50px",height:"50px",borderRadius:"50%",margin:"10px"}}>
+
+       </div>
+       <div 
+      
+       style={{backgroundColor:traffic==="green"?"green":"grey",width:"50px",height:"50px",borderRadius:"50%",margin:"10px"}}>
+
+       </div>
+     </div>
+   )
+ }
+export default Trafficl_iight
