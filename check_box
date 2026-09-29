@@ -1,56 +1,51 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
+
+
 function App()
 {
-  const lists=["apple","mango","grapes"]
-  const [check,setcheck]=useState([])
-  const [selectAll,SetselectAll]=useState([])
+   const [check,setcheck]=useState([])
+   const lists=["apple","mango","grapes"]
 
-  const handlecheck=(x)=>
-    {
-       if(check.includes(x))
-        {
-            setcheck(check.filter((y)=>y!=x))
-        }
-        else
-        {
-           setcheck([...check,x])
-        }
-    }
-
-    const selctlogic=(lists)=>
+   const handlechange=(x)=>
       {
-         if(lists.length===check.length)
-          {
-             setcheck([])
-          }
-          else{
-             setcheck(lists)
-          }
-
+         if(check.includes(x))
+            {
+               setcheck([check.filter((y)=>y!=x)])
+            }
+            else
+            {
+               setcheck([...check,x])
+            }
       }
 
-  return(
+      const handlechange_two=(lists)=>
+         {
+             if(lists.length===check.length)
+               {
+                  setcheck([])
+               }
+               else
+               {
+                  setcheck(lists)
+               }
+         }
+   return(
     <div>
-      <h1>check box</h1>
-      <input type={"checkbox"} 
-      checked={lists.length===check.length} 
-      onChange={()=>selctlogic(lists)}
-      />
-      selectAll
-      {lists.map((x)=><li>
-        <input 
-        checked={check.includes(x)} 
-        
-        onChange={()=>handlecheck(x)}
+      <div>
+         <input
 
-        type={"checkbox"}/> {x}</li>
-        )}
-        
-        <div>
-          selected items:
-          {check.map((x)=><li>{x}</li>)}
-          </div>
+         checked={lists.length===check.length}
+         onChange={()=>handlechange_two(lists)}
+         
+         type={"checkbox"}/> Select_All
+         </div>
+      {lists.map((x)=><li><input
+      onChange={()=>handlechange(x)}
+      checked={check.includes(x)}
+       type={"checkbox"}/>{x}</li>)}
+
+       <div>{check.map((x)=><li>{x}</li>)}</div>
     </div>
-  )
+   )
 }
 export default App
