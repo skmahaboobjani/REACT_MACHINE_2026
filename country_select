@@ -1,31 +1,33 @@
-import React,{useState} from "react"
+import React, { use, useState } from "react"
 
 function App()
 {
-  const [city,setcity]=useState([])
-  const data = [
-    { country: "India", cities: ["Delhi", "Mumbai", "Hyderabad"] },
-    { country: "USA", cities: ["New York", "Chicago"] },
-    { country: "UK", cities: ["London", "Manchester"] }
-  ];
-  const handlechange=(e)=>
-    {
-      console.log(e.target.value)
+   const [city,setcity]=useState([])
+   const data = [
+      { country: "India", cities: ["Delhi", "Mumbai", "Hyderabad"] },
+      { country: "USA", cities: ["New York", "Chicago"] },
+      { country: "UK", cities: ["London", "Manchester"] }
+    ];
 
-      let selected=data.find((x)=>x.country===e.target.value)
-      setcity(selected.cities)
-      console.log(city)
-    }
-  return(
-    <div>
-       <h1>country select</h1>
+    const handelchange=(e)=>
+      {
+         let selected=data.find((x)=>x.country===e.target.value)
 
-       <select onChange={handlechange}>
-        {data.map((x)=><option>{x.country}</option>)}
-       </select>
-       <select>{city.map((x)=><option>{x}</option>)}</select>
- 
-    </div>
-  )
+        console.log(selected)
+        setcity(selected.cities)
+      }
+   return(
+      <div>
+         <select
+       
+       onChange={handelchange}
+         
+
+         >{data.map((x)=><option>{x.country}</option>)}</select>
+
+         <div><select>{city.map((x)=><option>{x}</option>)}</select>
+         </div>
+      </div>
+   )
 }
 export default App
